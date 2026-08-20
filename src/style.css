@@ -55,14 +55,18 @@ a { color: inherit; }
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  color: var(--ink-soft);
+  justify-content: center;
+  padding: 8px 14px;
+  border: 1px solid rgba(185, 148, 89, 0.45);
+  color: var(--cream);
+  background: linear-gradient(135deg, #173c35 0%, #315f51 100%);
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-decoration: none;
   text-transform: uppercase;
   transition: color 180ms ease;
 }
-.site-nav a:hover { color: var(--gold); }
+.site-nav a:hover { color: var(--gold); background: linear-gradient(135deg, #214b40 0%, #3d6e5d 100%); }
 .language-picker { position: relative; flex: 0 0 auto; }
 .language-toggle { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid var(--line); color: var(--ink); background: transparent; font: inherit; font-size: 0.7rem; letter-spacing: 0.04em; cursor: pointer; }
 .language-toggle:hover { background: rgba(185, 148, 89, 0.08); }
