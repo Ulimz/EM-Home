@@ -1,10 +1,12 @@
 import './style.css'
 
+const assetBase = import.meta.env.BASE_URL
+
 document.querySelector('#app').innerHTML = `
   <div class="page-shell">
     <header class="top-brand">
       <div class="brand-shell">
-        <img class="brand-mark" src="/logo-em-home.png" alt="EM Home, gestión de pisos turísticos" />
+        <img class="brand-mark" src="${assetBase}logo-em-home.png" alt="EM Home, gestión de pisos turísticos" />
       </div>
       <nav class="site-nav" aria-label="Navegación principal">
         <a href="#inicio">Inicio</a>
@@ -24,7 +26,7 @@ document.querySelector('#app').innerHTML = `
           <a class="primary-cta" href="#contacto">Hablemos de tu vivienda <span aria-hidden="true">↗</span></a>
         </div>
         <div class="intro-visual">
-          <img src="/imagen-diseño-web.png?v=2" alt="Salón turístico luminoso con vistas a Sevilla" />
+          <img src="${assetBase}imagen-diseño-web.png?v=2" alt="Salón turístico luminoso con vistas a Sevilla" />
           <div class="intro-note">
             <span class="note-line"></span>
             <p>Nos ocupamos de todo<br><strong>de principio a fin.</strong></p>
@@ -132,15 +134,15 @@ document.querySelector('#app').innerHTML = `
         </div>
         <div class="homes-grid">
           <article class="home-card home-card-featured">
-            <img src="/Imagenes%20de%20casas/imagen1.png.jpg" alt="Comedor luminoso de una vivienda turística EM Home" loading="lazy" />
+            <img src="${assetBase}Imagenes%20de%20casas/imagen1.png.jpg" alt="Comedor luminoso de una vivienda turística EM Home" loading="lazy" />
             <div class="home-card-copy"><span>01 · INTERIOR</span><h3>Espacios con alma</h3><p>Una presentación cuidada desde el primer vistazo.</p></div>
           </article>
           <article class="home-card">
-            <img src="/Imagenes%20de%20casas/imagen2.png.jpg" alt="Baño cuidado y luminoso de una vivienda turística" loading="lazy" />
+            <img src="${assetBase}Imagenes%20de%20casas/imagen2.png.jpg" alt="Baño cuidado y luminoso de una vivienda turística" loading="lazy" />
             <div class="home-card-copy"><span>02 · DETALLES</span><h3>Cada detalle cuenta</h3><p>Orden, confort y una experiencia coherente.</p></div>
           </article>
           <article class="home-card">
-            <img src="/Imagenes%20de%20casas/imagen3.png.jpg" alt="Salón luminoso preparado para huéspedes" loading="lazy" />
+            <img src="${assetBase}Imagenes%20de%20casas/imagen3.png.jpg" alt="Salón luminoso preparado para huéspedes" loading="lazy" />
             <div class="home-card-copy"><span>03 · EXTERIOR</span><h3>Momentos para recordar</h3><p>También cuidamos los espacios que hacen especial cada estancia.</p></div>
           </article>
         </div>
