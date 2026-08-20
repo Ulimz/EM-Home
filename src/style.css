@@ -74,7 +74,7 @@ a { color: inherit; }
 .flag-fr { background: linear-gradient(to right, #1d3f91 0 33%, #fff 33% 66%, #ed2939 66%); }
 .flag-de { background: linear-gradient(to bottom, #181818 0 33%, #dd0000 33% 66%, #ffce00 66%); }
 .flag-it { background: linear-gradient(to right, #009246 0 33%, #fff 33% 66%, #ce2b37 66%); }
-.language-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 10; display: grid; width: 178px; padding: 6px; border: 1px solid var(--line); background: var(--warm-white); box-shadow: 0 12px 28px rgba(32, 59, 52, 0.16); }
+.language-menu { position: static; z-index: 10; display: grid; width: 178px; margin-top: 8px; padding: 6px; border: 1px solid var(--line); background: var(--warm-white); box-shadow: 0 12px 28px rgba(32, 59, 52, 0.16); }
 .language-menu[hidden] { display: none; }
 .language-option { display: flex; min-height: 42px; align-items: center; gap: 10px; padding: 7px 9px; border: 0; color: var(--ink); background: transparent; font: inherit; text-align: left; cursor: pointer; }
 .language-option:hover, .language-option:focus-visible { background: var(--sage); outline: none; }
