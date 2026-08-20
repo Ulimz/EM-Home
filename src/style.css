@@ -55,18 +55,14 @@ a { color: inherit; }
   display: inline-flex;
   min-height: 44px;
   align-items: center;
-  justify-content: center;
-  padding: 8px 14px;
-  border: 1px solid rgba(185, 148, 89, 0.45);
-  color: var(--cream);
-  background: linear-gradient(135deg, #173c35 0%, #315f51 100%);
+  color: var(--ink-soft);
   font-size: 0.75rem;
   letter-spacing: 0.12em;
   text-decoration: none;
   text-transform: uppercase;
   transition: color 180ms ease;
 }
-.site-nav a:hover { color: var(--gold); background: linear-gradient(135deg, #214b40 0%, #3d6e5d 100%); }
+.site-nav a:hover { color: var(--gold); }
 .language-picker { position: relative; flex: 0 0 auto; }
 .language-toggle { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid var(--line); color: var(--ink); background: transparent; font: inherit; font-size: 0.7rem; letter-spacing: 0.04em; cursor: pointer; }
 .language-toggle:hover { background: rgba(185, 148, 89, 0.08); }
@@ -209,7 +205,8 @@ h2 { margin: 0; color: var(--ink); font-size: clamp(2.5rem, 4.5vw, 4.5rem); lett
   .top-brand { display: grid; grid-template-columns: 1fr auto; grid-template-areas: 'brand picker' 'nav nav'; align-items: start; gap: 22px 16px; padding: 22px 24px 24px; }
   .brand-shell { grid-area: brand; width: 130px; }
   .site-nav { grid-area: nav; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 4px 8px; padding-top: 0; }
-  .site-nav a { justify-content: center; padding: 8px 6px; text-align: center; }
+  .site-nav a { justify-content: center; padding: 8px 6px; border: 1px solid rgba(185, 148, 89, 0.45); color: var(--cream); background: linear-gradient(135deg, #173c35 0%, #315f51 100%); text-align: center; }
+  .site-nav a:hover { color: var(--gold); background: linear-gradient(135deg, #214b40 0%, #3d6e5d 100%); }
   .language-picker { grid-area: picker; align-self: start; }
   .intro-section { grid-template-columns: 1fr; gap: 42px; padding: 58px 24px 68px; }
   .intro-note { padding-left: 30px; }
