@@ -74,7 +74,7 @@ a { color: inherit; }
 .flag-fr { background: linear-gradient(to right, #1d3f91 0 33%, #fff 33% 66%, #ed2939 66%); }
 .flag-de { background: linear-gradient(to bottom, #181818 0 33%, #dd0000 33% 66%, #ffce00 66%); }
 .flag-it { background: linear-gradient(to right, #009246 0 33%, #fff 33% 66%, #ce2b37 66%); }
-.language-menu { position: static; z-index: 10; display: grid; width: 178px; margin-top: 8px; padding: 6px; border: 1px solid var(--line); background: var(--warm-white); box-shadow: 0 12px 28px rgba(32, 59, 52, 0.16); }
+.language-menu { position: absolute; top: calc(100% + 8px); right: 0; z-index: 20; display: grid; width: 178px; margin-top: 0; padding: 6px; border: 1px solid var(--line); background: var(--warm-white); box-shadow: 0 12px 28px rgba(32, 59, 52, 0.16); }
 .language-menu[hidden] { display: none; }
 .language-option { display: flex; min-height: 42px; align-items: center; gap: 10px; padding: 7px 9px; border: 0; color: var(--ink); background: transparent; font: inherit; text-align: left; cursor: pointer; }
 .language-option:hover, .language-option:focus-visible { background: var(--sage); outline: none; }
@@ -254,7 +254,7 @@ h2 { margin: 0; color: var(--ink); font-size: clamp(2.5rem, 4.5vw, 4.5rem); lett
   .site-nav a { font-size: 0.63rem; }
   h1 { font-size: 3.65rem; }
   .language-picker { align-self: start; }
-  .language-menu { position: static; width: 178px; margin-top: 8px; box-shadow: 0 8px 18px rgba(32, 59, 52, 0.1); }
+  .language-menu { top: calc(100% + 8px); right: 0; width: 178px; box-shadow: 0 8px 18px rgba(32, 59, 52, 0.1); }
   h2 { font-size: 2.55rem; }
   .feature-row { grid-template-columns: 1fr; }
   .feature-item, .feature-item:not(:first-child) { min-height: auto; padding: 22px 0 28px; border-right: 0; }
