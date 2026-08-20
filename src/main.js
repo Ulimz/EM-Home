@@ -3,6 +3,7 @@ import './style.css'
 const assetBase = import.meta.env.BASE_URL
 const languages = ['es', 'val', 'ca', 'en', 'fr', 'de', 'it']
 const languageNames = { es: 'Español', val: 'Valencià', ca: 'Català', en: 'English', fr: 'Français', de: 'Deutsch', it: 'Italiano' }
+const languageFlags = { es: '🇪🇸 ES', val: '🇪🇸 VA', ca: '🇪🇸 CA', en: '🇬🇧 EN', fr: '🇫🇷 FR', de: '🇩🇪 DE', it: '🇮🇹 IT' }
 const translations = {
   es: {
     nav: ['Inicio', 'Servicios', 'Cómo trabajamos', 'Viviendas', 'Contacto'], eyebrow: 'GESTIÓN TURÍSTICA', hero: 'Tu vivienda,<br><em>bien cuidada.</em>', intro: 'Convertimos tu apartamento en una experiencia memorable para tus huéspedes y en una inversión más rentable para ti.', cta: 'Hablemos de tu vivienda', note: 'Nos ocupamos de todo<br><strong>de principio a fin.</strong>',
@@ -40,7 +41,7 @@ function render(language = currentLanguage) {
   document.documentElement.lang = currentLanguage === 'val' ? 'ca-valencia' : currentLanguage
   document.querySelector('#app').innerHTML = `
   <div class="page-shell">
-    <header class="top-brand"><div class="brand-shell"><img class="brand-mark" src="${assetBase}logo-em-home.png" alt="EM Home" /></div><nav class="site-nav" aria-label="Navegación principal">${t.nav.map((item, i) => `<a href="#${['inicio', 'servicios', 'proceso', 'viviendas', 'contacto'][i]}">${item}</a>`).join('')}</nav><label class="language-picker"><span class="sr-only">Idioma</span><select id="language-select" aria-label="Seleccionar idioma">${languages.map((code) => `<option value="${code}" ${code === currentLanguage ? 'selected' : ''}>${languageNames[code]}</option>`).join('')}</select></label></header>
+    <header class="top-brand"><div class="brand-shell"><img class="brand-mark" src="${assetBase}logo-em-home.png" alt="EM Home" /></div><nav class="site-nav" aria-label="Navegación principal">${t.nav.map((item, i) => `<a href="#${['inicio', 'servicios', 'proceso', 'viviendas', 'contacto'][i]}">${item}</a>`).join('')}</nav><label class="language-picker"><span class="sr-only">Idioma</span><select id="language-select" aria-label="Seleccionar idioma" title="${languageNames[currentLanguage]}">${languages.map((code) => `<option value="${code}" title="${languageNames[code]}" ${code === currentLanguage ? 'selected' : ''}>${languageFlags[code]}</option>`).join('')}</select></label></header>
 +    <main>
       <section class="intro-section" id="inicio"><div class="intro-copy"><p class="eyebrow">${t.eyebrow}</p><h1>${t.hero}</h1><p class="intro-text">${t.intro}</p><a class="primary-cta" href="#contacto">${t.cta} <span aria-hidden="true">↗</span></a></div><div class="intro-visual"><img src="${assetBase}imagen-diseño-web.png?v=2" alt="Salón turístico luminoso" /><div class="intro-note"><span class="note-line"></span><p>${t.note}</p></div></div></section>
       <section class="values-strip" aria-label="${t.eyebrow}">${t.values.map((item, i) => `<div class="value-item"><span class="value-mark">0${i + 1}</span><div><strong>${item[0]}</strong><span>${item[1]}</span></div></div>`).join('')}</section>
