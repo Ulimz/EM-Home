@@ -157,7 +157,7 @@ document.querySelector('#app').innerHTML = `
       <div class="contact-details">
         <a href="mailto:contacto.emhomemanagement@gmail.com">contacto.emhomemanagement@gmail.com</a>
         <a href="tel:+34602428443">+34 602 428 443</a>
-        <span>www.emgestionturistica.com</span>
+        <span>www.emgestionturistica.es</span>
         <div class="contact-actions">
           <a class="whatsapp-button" href="https://wa.me/34602428443" target="_blank" rel="noreferrer">Escribir por WhatsApp <span aria-hidden="true">↗</span></a>
         </div>
