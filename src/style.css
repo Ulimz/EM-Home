@@ -202,10 +202,11 @@ h2 { margin: 0; color: var(--ink); font-size: clamp(2.5rem, 4.5vw, 4.5rem); lett
 
 @media (max-width: 780px) {
   body { padding: 12px; }
-  .top-brand { align-items: flex-start; padding: 22px 24px 18px; }
-  .brand-shell { width: 130px; }
-  .site-nav { flex-direction: column; align-items: stretch; gap: 6px; }
-  .site-nav a { justify-content: flex-end; padding: 8px 10px; }
+  .top-brand { display: grid; grid-template-columns: 1fr auto; grid-template-areas: 'brand picker' 'nav nav'; align-items: start; gap: 22px 16px; padding: 22px 24px 24px; }
+  .brand-shell { grid-area: brand; width: 130px; }
+  .site-nav { grid-area: nav; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: stretch; gap: 4px 8px; padding-top: 0; }
+  .site-nav a { justify-content: center; padding: 8px 6px; text-align: center; }
+  .language-picker { grid-area: picker; align-self: start; }
   .intro-section { grid-template-columns: 1fr; gap: 42px; padding: 58px 24px 68px; }
   .intro-note { padding-left: 30px; }
   .intro-section::after { right: 7%; bottom: 26px; font-size: 4.5rem; }
@@ -250,13 +251,8 @@ h2 { margin: 0; color: var(--ink); font-size: clamp(2.5rem, 4.5vw, 4.5rem); lett
     padding: 22px 24px 18px;
   }
   .site-nav a { font-size: 0.63rem; }
-  .site-nav {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 6px;
-  }
   h1 { font-size: 3.65rem; }
-  .language-picker { align-self: flex-end; }
+  .language-picker { align-self: start; }
   .language-menu { position: static; width: 178px; margin-top: 8px; box-shadow: 0 8px 18px rgba(32, 59, 52, 0.1); }
   h2 { font-size: 2.55rem; }
   .feature-row { grid-template-columns: 1fr; }
