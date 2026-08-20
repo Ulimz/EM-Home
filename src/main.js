@@ -34,15 +34,17 @@ const translations = {
 }
 
 let currentLanguage = localStorage.getItem('em-home-language') || 'es'
+let removeLanguageListener = () => {}
 const imagePaths = [`${assetBase}Imagenes%20de%20casas/imagen1.png.jpg`, `${assetBase}Imagenes%20de%20casas/imagen2.png.jpg`, `${assetBase}Imagenes%20de%20casas/imagen3.png.jpg`]
 
 function render(language = currentLanguage) {
+  removeLanguageListener()
   currentLanguage = languages.includes(language) ? language : 'es'
   const t = translations[currentLanguage]
   document.documentElement.lang = currentLanguage === 'val' ? 'ca-valencia' : currentLanguage
   document.querySelector('#app').innerHTML = `
   <div class="page-shell">
-    <header class="top-brand"><div class="brand-shell"><img class="brand-mark" src="${assetBase}logo-em-home.png" alt="EM Home" /></div><nav class="site-nav" aria-label="Navegación principal">${t.nav.map((item, i) => `<a href="#${['inicio', 'servicios', 'proceso', 'viviendas', 'contacto'][i]}">${item}</a>`).join('')}</nav><label class="language-picker language-${currentLanguage}" ${regionalFlags[currentLanguage] ? `style="--language-flag: url('${regionalFlags[currentLanguage]}')"` : ''}><span class="sr-only">Idioma</span><select id="language-select" aria-label="Seleccionar idioma" title="${languageNames[currentLanguage]}">${languages.map((code) => `<option value="${code}" title="${languageNames[code]}" ${code === currentLanguage ? 'selected' : ''}>${languageFlags[code]}</option>`).join('')}</select></label></header>
+    <header class="top-brand"><div class="brand-shell"><img class="brand-mark" src="${assetBase}logo-em-home.png" alt="EM Home" /></div><nav class="site-nav" aria-label="Navegación principal">${t.nav.map((item, i) => `<a href="#${['inicio', 'servicios', 'proceso', 'viviendas', 'contacto'][i]}">${item}</a>`).join('')}</nav><div class="language-picker language-${currentLanguage}" id="language-picker"><button class="language-toggle" type="button" aria-expanded="false" aria-controls="language-menu"><span class="language-flag flag-${currentLanguage}" ${regionalFlags[currentLanguage] ? `style="--language-flag: url('${regionalFlags[currentLanguage]}')"` : ''}></span><span>${languageFlags[currentLanguage]}</span><span class="language-chevron" aria-hidden="true">⌄</span><span class="sr-only">${languageNames[currentLanguage]}</span></button><div class="language-menu" id="language-menu" hidden>${languages.map((code) => `<button class="language-option" type="button" data-language="${code}"><span class="language-flag flag-${code}" ${regionalFlags[code] ? `style="--language-flag: url('${regionalFlags[code]}')"` : ''}></span><span><strong>${languageFlags[code]}</strong><small>${languageNames[code]}</small></span></button>`).join('')}</div></div></header>
 +    <main>
       <section class="intro-section" id="inicio"><div class="intro-copy"><p class="eyebrow">${t.eyebrow}</p><h1>${t.hero}</h1><p class="intro-text">${t.intro}</p><a class="primary-cta" href="#contacto">${t.cta} <span aria-hidden="true">↗</span></a></div><div class="intro-visual"><img src="${assetBase}imagen-diseño-web.png?v=2" alt="Salón turístico luminoso" /><div class="intro-note"><span class="note-line"></span><p>${t.note}</p></div></div></section>
       <section class="values-strip" aria-label="${t.eyebrow}">${t.values.map((item, i) => `<div class="value-item"><span class="value-mark">0${i + 1}</span><div><strong>${item[0]}</strong><span>${item[1]}</span></div></div>`).join('')}</section>
@@ -51,7 +53,14 @@ function render(language = currentLanguage) {
       <section class="homes-section" id="viviendas"><div class="section-heading homes-heading"><p class="eyebrow">${t.homesEyebrow}</p><h2>${t.homesTitle}</h2></div><div class="homes-grid">${t.homes.map((item, i) => `<article class="home-card ${i === 0 ? 'home-card-featured' : ''}"><img src="${imagePaths[i]}" alt="${item[1]}" loading="lazy" /><div class="home-card-copy"><span>0${i + 1} · ${item[0]}</span><h3>${item[1]}</h3><p>${item[2]}</p></div></article>`).join('')}</div></section>
     </main>
     <footer class="contact-strip" id="contacto"><div class="contact-intro"><p class="eyebrow">EM HOME</p><h2>${t.contactTitle}</h2></div><div class="contact-details"><a href="mailto:contacto.emhomemanagement@gmail.com">contacto.emhomemanagement@gmail.com</a><a href="tel:+34602428443">+34 602 428 443</a><span>www.emgestionturistica.es</span><div class="contact-actions"><a class="whatsapp-button" href="https://wa.me/34602428443" target="_blank" rel="noreferrer">${t.whatsapp} <span aria-hidden="true">↗</span></a></div></div></footer><div class="footer-signature">${t.signature.map((item) => `<span>${item}</span>`).join('')}</div></div>`
-  document.querySelector('#language-select').addEventListener('change', (event) => { localStorage.setItem('em-home-language', event.target.value); render(event.target.value) })
+  const picker = document.querySelector('#language-picker')
+  const toggle = picker.querySelector('.language-toggle')
+  const menu = picker.querySelector('.language-menu')
+  toggle.addEventListener('click', () => { const isOpen = !menu.hidden; menu.hidden = isOpen; toggle.setAttribute('aria-expanded', String(!isOpen)) })
+  picker.querySelectorAll('[data-language]').forEach((option) => option.addEventListener('click', () => { localStorage.setItem('em-home-language', option.dataset.language); render(option.dataset.language) }))
+  const closeOnOutsideClick = (event) => { if (!picker.contains(event.target)) { menu.hidden = true; toggle.setAttribute('aria-expanded', 'false') } }
+  document.addEventListener('click', closeOnOutsideClick)
+  removeLanguageListener = () => document.removeEventListener('click', closeOnOutsideClick)
 }
 
 render()
