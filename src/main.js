@@ -20,7 +20,7 @@ document.querySelector('#app').innerHTML = `
     <main>
       <section class="intro-section" id="inicio">
         <div class="intro-copy">
-          <p class="eyebrow">GESTIÓN TURÍSTICA · SEVILLA</p>
+          <p class="eyebrow">GESTIÓN TURÍSTICA</p>
           <h1>Tu vivienda,<br><em>bien cuidada.</em></h1>
           <p class="intro-text">Convertimos tu apartamento en una experiencia memorable para tus huéspedes y en una inversión más rentable para ti.</p>
           <a class="primary-cta" href="#contacto">Hablemos de tu vivienda <span aria-hidden="true">↗</span></a>
