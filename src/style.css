@@ -255,7 +255,7 @@ h2 { margin: 0; color: var(--ink); font-size: clamp(2.5rem, 4.5vw, 4.5rem); lett
   .site-nav a { font-size: 0.63rem; }
   h1 { font-size: 3.65rem; }
   .language-picker { align-self: start; }
-  .language-menu { top: calc(100% + 8px); right: 0; width: 178px; box-shadow: 0 8px 18px rgba(32, 59, 52, 0.1); }
+  .language-menu { top: calc(100% + 8px); right: 0; width: 178px; max-height: calc(100vh - 110px); overflow-y: auto; overscroll-behavior: contain; box-shadow: 0 8px 18px rgba(32, 59, 52, 0.1); }
   h2 { font-size: 2.55rem; }
   .feature-row { grid-template-columns: 1fr; }
   .feature-item, .feature-item:not(:first-child) { min-height: auto; padding: 22px 0 28px; border-right: 0; }
