@@ -1,171 +1,55 @@
 import './style.css'
 
 const assetBase = import.meta.env.BASE_URL
+const languages = ['es', 'val', 'ca', 'en', 'fr', 'de', 'it']
+const languageNames = { es: 'Español', val: 'Valencià', ca: 'Català', en: 'English', fr: 'Français', de: 'Deutsch', it: 'Italiano' }
+const translations = {
+  es: {
+    nav: ['Inicio', 'Servicios', 'Cómo trabajamos', 'Viviendas', 'Contacto'], eyebrow: 'GESTIÓN TURÍSTICA', hero: 'Tu vivienda,<br><em>bien cuidada.</em>', intro: 'Convertimos tu apartamento en una experiencia memorable para tus huéspedes y en una inversión más rentable para ti.', cta: 'Hablemos de tu vivienda', note: 'Nos ocupamos de todo<br><strong>de principio a fin.</strong>',
+    values: [['A MEDIDA', 'Una estrategia para tu vivienda'], ['CON CUIDADO', 'Atención en cada detalle'], ['CON RESULTADOS', 'Más tranquilidad para ti']], servicesEyebrow: 'LO QUE HACEMOS', servicesTitle: 'Una gestión completa,<br><em>sin complicaciones.</em>', services: [['GESTIÓN INTEGRAL', 'Me encargo de todo, de principio a fin.'], ['PUBLICACIÓN EN PLATAFORMAS', 'Más visibilidad y más oportunidades de reserva.'], ['ATENCIÓN A HUÉSPEDES', 'Experiencia cuidada y personalizada.'], ['LIMPIEZA Y MANTENIMIENTO', 'Coordinación profesional y eficiente.'], ['OPTIMIZACIÓN DE PRECIOS Y OCUPACIÓN', 'Para lograr la máxima rentabilidad.'], ['HOME STAGING TURÍSTICO', 'Una presentación que enamora y destaca.']],
+    results: [['ESTUDIO DE RENTABILIDAD', 'GRATUITO', 'Descubre el potencial de tu vivienda.'], ['GESTIÓN PERSONALIZADA', 'Y ATENCIÓN CUIDADA', 'Enfocados en resultados y tranquilidad.']], benefits: [['Gestión 100%', 'integral'], ['Check-in /', 'Check-out'], ['Limpieza', 'profesional'], ['Calendario y', 'reservas optimizadas'], ['Más ingresos,', 'menos preocupaciones']],
+    processEyebrow: 'ASÍ EMPEZAMOS', processTitle: 'De tu vivienda a<br><em>sus primeras reservas.</em>', process: [['CONOCEMOS TU VIVIENDA', 'Hablamos de tus objetivos, estudiamos el potencial del alojamiento y planteamos una estrategia a medida.'], ['LA PREPARAMOS PARA DESTACAR', 'Organizamos la presentación, el anuncio, los precios y todo lo necesario para salir al mercado.'], ['GESTIONAMOS CADA ESTANCIA', 'Reservas, huéspedes, entradas, salidas y proveedores quedan coordinados por nuestro equipo.']], homesEyebrow: 'ESPACIOS QUE CUIDAMOS', homesTitle: 'Viviendas preparadas<br><em>para ser disfrutadas.</em>', homes: [['INTERIOR', 'Espacios con alma', 'Una presentación cuidada desde el primer vistazo.'], ['DETALLES', 'Cada detalle cuenta', 'Orden, confort y una experiencia coherente.'], ['EXTERIOR', 'Momentos para recordar', 'También cuidamos los espacios que hacen especial cada estancia.']],
+    contactTitle: 'Hablemos de lo que<br><em>puede llegar a ser.</em>', whatsapp: 'Escribir por WhatsApp', signature: ['HOGARES', 'EXPERIENCIAS', 'CONFIANZA']
+  },
+  val: {
+    nav: ['Inici', 'Serveis', 'Com treballem', 'Vivendes', 'Contacte'], eyebrow: 'GESTIÓ TURÍSTICA', hero: 'La teua vivenda,<br><em>ben cuidada.</em>', intro: 'Convertim el teu apartament en una experiència memorable per als teus hostes i en una inversió més rendible per a tu.', cta: 'Parlem de la teua vivenda', note: 'Ens ocupem de tot<br><strong>de principi a fi.</strong>', values: [['A MIDA', 'Una estratègia per a la teua vivenda'], ['AMB CURA', 'Atenció en cada detall'], ['AMB RESULTATS', 'Més tranquil·litat per a tu']], servicesEyebrow: 'EL QUE FEM', servicesTitle: 'Una gestió completa,<br><em>sense complicacions.</em>', services: [['GESTIÓ INTEGRAL', 'M’encarregue de tot, de principi a fi.'], ['PUBLICACIÓ EN PLATAFORMES', 'Més visibilitat i més oportunitats de reserva.'], ['ATENCIÓ ALS HOSTES', 'Experiència cuidada i personalitzada.'], ['NETEJA I MANTENIMENT', 'Coordinació professional i eficient.'], ['OPTIMITZACIÓ DE PREUS I OCUPACIÓ', 'Per aconseguir la màxima rendibilitat.'], ['HOME STAGING TURÍSTIC', 'Una presentació que enamora i destaca.']], results: [['ESTUDI DE RENDIBILITAT', 'GRATUÏT', 'Descobrix el potencial de la teua vivenda.'], ['GESTIÓ PERSONALITZADA', 'I ATENCIÓ CUIDADA', 'Ens centrem en resultats i tranquil·litat.']], benefits: [['Gestió 100%', 'integral'], ['Check-in /', 'Check-out'], ['Neteja', 'professional'], ['Calendari i', 'reserves optimitzades'], ['Més ingressos,', 'menys preocupacions']], processEyebrow: 'AIXÍ COMENCEM', processTitle: 'De la teua vivenda a<br><em>les primeres reserves.</em>', process: [['CONEIXEM LA TEUA VIVENDA', 'Parlem dels teus objectius, estudiem el potencial de l’allotjament i plantegem una estratègia a mida.'], ['LA PREPAREM PER A DESTACAR', 'Organitzem la presentació, l’anunci, els preus i tot el necessari per a eixir al mercat.'], ['GESTIONEM CADA ESTADA', 'Reserves, hostes, entrades, eixides i proveïdors queden coordinats pel nostre equip.']], homesEyebrow: 'ESPAIS QUE CUIDEM', homesTitle: 'Vivendes preparades<br><em>per a ser gaudides.</em>', homes: [['INTERIOR', 'Espais amb ànima', 'Una presentació cuidada des del primer colp d’ull.'], ['DETALLS', 'Cada detall compta', 'Orde, confort i una experiència coherent.'], ['EXTERIOR', 'Moments per a recordar', 'També cuidem els espais que fan especial cada estada.']], contactTitle: 'Parlem del que<br><em>pot arribar a ser.</em>', whatsapp: 'Escriure per WhatsApp', signature: ['LLARS', 'EXPERIÈNCIES', 'CONFIANÇA']
+  },
+  ca: {
+    nav: ['Inici', 'Serveis', 'Com treballem', 'Habitatges', 'Contacte'], eyebrow: 'GESTIÓ TURÍSTICA', hero: 'El teu habitatge,<br><em>ben cuidat.</em>', intro: 'Convertim el teu apartament en una experiència memorable per als teus hostes i en una inversió més rendible per a tu.', cta: 'Parlem del teu habitatge', note: 'Ens ocupem de tot<br><strong>de principi a fi.</strong>', values: [['A MIDA', 'Una estratègia per al teu habitatge'], ['AMB CURA', 'Atenció en cada detall'], ['AMB RESULTATS', 'Més tranquil·litat per a tu']], servicesEyebrow: 'EL QUE FEM', servicesTitle: 'Una gestió completa,<br><em>sense complicacions.</em>', services: [['GESTIÓ INTEGRAL', 'M’encarrego de tot, de principi a fi.'], ['PUBLICACIÓ EN PLATAFORMES', 'Més visibilitat i més oportunitats de reserva.'], ['ATENCIÓ ALS HOSTES', 'Experiència cuidada i personalitzada.'], ['NETEJA I MANTENIMENT', 'Coordinació professional i eficient.'], ['OPTIMITZACIÓ DE PREUS I OCUPACIÓ', 'Per aconseguir la màxima rendibilitat.'], ['HOME STAGING TURÍSTIC', 'Una presentació que enamora i destaca.']], results: [['ESTUDI DE RENDIBILITAT', 'GRATUÏT', 'Descobreix el potencial del teu habitatge.'], ['GESTIÓ PERSONALITZADA', 'I ATENCIÓ CUIDADA', 'Ens centrem en resultats i tranquil·litat.']], benefits: [['Gestió 100%', 'integral'], ['Check-in /', 'Check-out'], ['Neteja', 'professional'], ['Calendari i', 'reserves optimitzades'], ['Més ingressos,', 'menys preocupacions']], processEyebrow: 'AIXÍ COMENCEM', processTitle: 'Del teu habitatge a<br><em>les primeres reserves.</em>', process: [['CONEIXEM EL TEU HABITATGE', 'Parlem dels teus objectius, estudiem el potencial de l’allotjament i plantegem una estratègia a mida.'], ['EL PREPAREM PER DESTACAR', 'Organitzem la presentació, l’anunci, els preus i tot el necessari per sortir al mercat.'], ['GESTIONEM CADA ESTADA', 'Reserves, hostes, entrades, sortides i proveïdors queden coordinats pel nostre equip.']], homesEyebrow: 'ESPAIS QUE CUIDEM', homesTitle: 'Habitatges preparats<br><em>per ser gaudits.</em>', homes: [['INTERIOR', 'Espais amb ànima', 'Una presentació cuidada des del primer cop d’ull.'], ['DETALLS', 'Cada detall compta', 'Ordre, confort i una experiència coherent.'], ['EXTERIOR', 'Moments per recordar', 'També cuidem els espais que fan especial cada estada.']], contactTitle: 'Parlem del que<br><em>pot arribar a ser.</em>', whatsapp: 'Escriure per WhatsApp', signature: ['LLARS', 'EXPERIÈNCIES', 'CONFIANÇA']
+  },
+  en: {
+    nav: ['Home', 'Services', 'How we work', 'Properties', 'Contact'], eyebrow: 'HOLIDAY RENTAL MANAGEMENT', hero: 'Your home,<br><em>well cared for.</em>', intro: 'We turn your apartment into a memorable experience for guests and a more profitable investment for you.', cta: 'Let’s talk about your property', note: 'We take care of everything<br><strong>from start to finish.</strong>', values: [['TAILORED', 'A strategy for your property'], ['THOUGHTFUL', 'Care in every detail'], ['RESULTS-LED', 'More peace of mind']], servicesEyebrow: 'WHAT WE DO', servicesTitle: 'Complete management,<br><em>without the hassle.</em>', services: [['FULL MANAGEMENT', 'We take care of everything, from start to finish.'], ['PLATFORM LISTING', 'More visibility and more booking opportunities.'], ['GUEST CARE', 'A thoughtful, personalised experience.'], ['CLEANING & MAINTENANCE', 'Professional and efficient coordination.'], ['PRICE & OCCUPANCY OPTIMISATION', 'To achieve maximum profitability.'], ['HOLIDAY HOME STAGING', 'A presentation that makes your property stand out.']], results: [['FREE PROFITABILITY', 'ASSESSMENT', 'Discover your property’s potential.'], ['PERSONALISED MANAGEMENT', 'AND THOUGHTFUL CARE', 'Focused on results and peace of mind.']], benefits: [['100% full', 'management'], ['Check-in /', 'Check-out'], ['Professional', 'cleaning'], ['Optimised calendar', 'and bookings'], ['More income,', 'less worry']], processEyebrow: 'HOW WE START', processTitle: 'From your property to<br><em>your first bookings.</em>', process: [['WE GET TO KNOW YOUR PROPERTY', 'We discuss your goals, assess its potential and create a tailored strategy.'], ['WE PREPARE IT TO STAND OUT', 'We organise the presentation, listing, pricing and everything needed to go live.'], ['WE MANAGE EVERY STAY', 'Bookings, guests, check-ins, check-outs and suppliers are coordinated by our team.']], homesEyebrow: 'SPACES WE CARE FOR', homesTitle: 'Properties prepared<br><em>to be enjoyed.</em>', homes: [['INTERIOR', 'Spaces with soul', 'A thoughtful presentation from the very first glance.'], ['DETAILS', 'Every detail matters', 'Order, comfort and a seamless experience.'], ['OUTDOOR', 'Moments to remember', 'We also care for the spaces that make every stay special.']], contactTitle: 'Let’s talk about what<br><em>your property can become.</em>', whatsapp: 'Message us on WhatsApp', signature: ['HOMES', 'EXPERIENCES', 'TRUST']
+  },
+  fr: {
+    nav: ['Accueil', 'Services', 'Notre méthode', 'Logements', 'Contact'], eyebrow: 'GESTION LOCATIVE TOURISTIQUE', hero: 'Votre logement,<br><em>bien entretenu.</em>', intro: 'Nous transformons votre appartement en une expérience mémorable pour vos voyageurs et en un investissement plus rentable pour vous.', cta: 'Parlons de votre logement', note: 'Nous nous occupons de tout<br><strong>du début à la fin.</strong>', values: [['SUR MESURE', 'Une stratégie pour votre logement'], ['AVEC SOIN', 'Une attention à chaque détail'], ['AVEC RÉSULTATS', 'Plus de sérénité pour vous']], servicesEyebrow: 'NOS SERVICES', servicesTitle: 'Une gestion complète,<br><em>en toute simplicité.</em>', services: [['GESTION INTÉGRALE', 'Nous nous occupons de tout, du début à la fin.'], ['PUBLICATION SUR LES PLATEFORMES', 'Plus de visibilité et plus de réservations.'], ['ACCUEIL DES VOYAGEURS', 'Une expérience soignée et personnalisée.'], ['MÉNAGE ET MAINTENANCE', 'Une coordination professionnelle et efficace.'], ['OPTIMISATION DES PRIX ET DE L’OCCUPATION', 'Pour une rentabilité maximale.'], ['HOME STAGING TOURISTIQUE', 'Une présentation qui séduit et se démarque.']], results: [['ÉTUDE DE RENTABILITÉ', 'GRATUITE', 'Découvrez le potentiel de votre logement.'], ['GESTION PERSONNALISÉE', 'ET ATTENTION SOIGNÉE', 'Des résultats en toute sérénité.']], benefits: [['Gestion 100%', 'intégrale'], ['Check-in /', 'Check-out'], ['Ménage', 'professionnel'], ['Calendrier et', 'réservations optimisés'], ['Plus de revenus,', 'moins de soucis']], processEyebrow: 'NOTRE MÉTHODE', processTitle: 'De votre logement à<br><em>vos premières réservations.</em>', process: [['NOUS DÉCOUVRONS VOTRE LOGEMENT', 'Nous parlons de vos objectifs, étudions son potentiel et construisons une stratégie sur mesure.'], ['NOUS LE PRÉPARONS POUR LE VALORISER', 'Nous organisons la présentation, l’annonce, les prix et tout le nécessaire pour le lancement.'], ['NOUS GÉRONS CHAQUE SÉJOUR', 'Réservations, voyageurs, arrivées, départs et prestataires sont coordonnés par notre équipe.']], homesEyebrow: 'DES ESPACES QUE NOUS SOIGNONS', homesTitle: 'Des logements prêts<br><em>à être appréciés.</em>', homes: [['INTÉRIEUR', 'Des espaces qui ont une âme', 'Une présentation soignée dès le premier regard.'], ['DÉTAILS', 'Chaque détail compte', 'Ordre, confort et expérience harmonieuse.'], ['EXTÉRIEUR', 'Des moments à retenir', 'Nous soignons aussi les espaces qui rendent chaque séjour unique.']], contactTitle: 'Parlons de ce que<br><em>votre logement peut devenir.</em>', whatsapp: 'Écrire sur WhatsApp', signature: ['FOYERS', 'EXPÉRIENCES', 'CONFIANCE']
+  },
+  de: {
+    nav: ['Startseite', 'Leistungen', 'So arbeiten wir', 'Wohnungen', 'Kontakt'], eyebrow: 'TOURISTISCHE VERMIETUNG', hero: 'Ihre Wohnung,<br><em>bestens umsorgt.</em>', intro: 'Wir machen Ihre Wohnung zu einem unvergesslichen Erlebnis für Gäste und zu einer rentableren Investition für Sie.', cta: 'Sprechen wir über Ihre Wohnung', note: 'Wir kümmern uns um alles<br><strong>von Anfang bis Ende.</strong>', values: [['INDIVIDUELL', 'Eine Strategie für Ihre Wohnung'], ['SORGFÄLTIG', 'Liebe zum Detail'], ['ERGEBNISORIENTIERT', 'Mehr Ruhe für Sie']], servicesEyebrow: 'UNSERE LEISTUNGEN', servicesTitle: 'Komplettes Management,<br><em>ganz unkompliziert.</em>', services: [['GANZHEITLICHE BETREUUNG', 'Wir kümmern uns um alles, von Anfang bis Ende.'], ['VERÖFFENTLICHUNG AUF PLATTFORMEN', 'Mehr Sichtbarkeit und mehr Buchungen.'], ['GÄSTEBETREUUNG', 'Eine persönliche und sorgfältige Erfahrung.'], ['REINIGUNG & INSTANDHALTUNG', 'Professionelle und effiziente Koordination.'], ['PREIS- & AUSLASTUNGSOPTIMIERUNG', 'Für maximale Rentabilität.'], ['TOURISTISCHES HOME STAGING', 'Eine Präsentation, die begeistert und auffällt.']], results: [['KOSTENLOSE', 'RENTABILITÄTSANALYSE', 'Entdecken Sie das Potenzial Ihrer Wohnung.'], ['PERSÖNLICHE BETREUUNG', 'UND SORGFALT', 'Für Ergebnisse und mehr Ruhe.']], benefits: [['100% ganzheitliche', 'Betreuung'], ['Check-in /', 'Check-out'], ['Professionelle', 'Reinigung'], ['Optimierter Kalender', 'und Buchungen'], ['Mehr Einnahmen,', 'weniger Sorgen']], processEyebrow: 'SO STARTEN WIR', processTitle: 'Von Ihrer Wohnung zu<br><em>den ersten Buchungen.</em>', process: [['WIR LERNEN IHRE WOHNUNG KENNEN', 'Wir sprechen über Ihre Ziele, prüfen das Potenzial und entwickeln eine passende Strategie.'], ['WIR BEREITEN SIE VOR', 'Wir kümmern uns um Präsentation, Inserat, Preise und den gesamten Start.'], ['WIR BETREUEN JEDEN AUFENTHALT', 'Buchungen, Gäste, An- und Abreisen sowie Partner werden von uns koordiniert.']], homesEyebrow: 'RÄUME, UM DIE WIR UNS KÜMMERN', homesTitle: 'Wohnungen, bereit<br><em>genossen zu werden.</em>', homes: [['INNENBEREICH', 'Räume mit Charakter', 'Eine sorgfältige Präsentation vom ersten Eindruck an.'], ['DETAILS', 'Jedes Detail zählt', 'Ordnung, Komfort und ein stimmiges Erlebnis.'], ['AUSSENBEREICH', 'Besondere Momente', 'Auch die Räume, die jeden Aufenthalt besonders machen, liegen uns am Herzen.']], contactTitle: 'Sprechen wir darüber,<br><em>was möglich ist.</em>', whatsapp: 'Über WhatsApp schreiben', signature: ['ZUHAUSE', 'ERLEBNISSE', 'VERTRAUEN']
+  },
+  it: {
+    nav: ['Inizio', 'Servizi', 'Come lavoriamo', 'Case', 'Contatti'], eyebrow: 'GESTIONE TURISTICA', hero: 'La tua casa,<br><em>curata con attenzione.</em>', intro: 'Trasformiamo il tuo appartamento in un’esperienza memorabile per gli ospiti e in un investimento più redditizio per te.', cta: 'Parliamo della tua casa', note: 'Ci occupiamo di tutto<br><strong>dall’inizio alla fine.</strong>', values: [['SU MISURA', 'Una strategia per la tua casa'], ['CON CURA', 'Attenzione a ogni dettaglio'], ['CON RISULTATI', 'Più tranquillità per te']], servicesEyebrow: 'COSA FACCIAMO', servicesTitle: 'Una gestione completa,<br><em>senza complicazioni.</em>', services: [['GESTIONE INTEGRALE', 'Ci occupiamo di tutto, dall’inizio alla fine.'], ['PUBBLICAZIONE SULLE PIATTAFORME', 'Più visibilità e più opportunità di prenotazione.'], ['ASSISTENZA AGLI OSPITI', 'Un’esperienza curata e personalizzata.'], ['PULIZIA E MANUTENZIONE', 'Coordinamento professionale ed efficiente.'], ['OTTIMIZZAZIONE DI PREZZI E OCCUPAZIONE', 'Per ottenere la massima redditività.'], ['HOME STAGING TURISTICO', 'Una presentazione che conquista e valorizza.']], results: [['STUDIO DI REDDITIVITÀ', 'GRATUITO', 'Scopri il potenziale della tua casa.'], ['GESTIONE PERSONALIZZATA', 'E ATTENZIONE', 'Concentrati sui risultati e sulla tranquillità.']], benefits: [['Gestione 100%', 'integrale'], ['Check-in /', 'Check-out'], ['Pulizia', 'professionale'], ['Calendario e', 'prenotazioni ottimizzate'], ['Più entrate,', 'meno preoccupazioni']], processEyebrow: 'COME INIZIAMO', processTitle: 'Dalla tua casa alle<br><em>prime prenotazioni.</em>', process: [['CONOSCIAMO LA TUA CASA', 'Parliamo dei tuoi obiettivi, studiamo il potenziale e definiamo una strategia su misura.'], ['LA PREPARIAMO PER DISTINGUERSI', 'Organizziamo presentazione, annuncio, prezzi e tutto ciò che serve per partire.'], ['GESTIAMO OGNI SOGGIORNO', 'Prenotazioni, ospiti, arrivi, partenze e fornitori sono coordinati dal nostro team.']], homesEyebrow: 'SPAZI DI CUI CI PRENDIAMO CURA', homesTitle: 'Case pronte<br><em>da vivere.</em>', homes: [['INTERNI', 'Spazi con anima', 'Una presentazione curata fin dal primo sguardo.'], ['DETTAGLI', 'Ogni dettaglio conta', 'Ordine, comfort ed esperienza armoniosa.'], ['ESTERNI', 'Momenti da ricordare', 'Curiamo anche gli spazi che rendono speciale ogni soggiorno.']], contactTitle: 'Parliamo di ciò che<br><em>la tua casa può diventare.</em>', whatsapp: 'Scrivici su WhatsApp', signature: ['CASE', 'ESPERIENZE', 'FIDUCIA']
+  }
+}
 
-document.querySelector('#app').innerHTML = `
+let currentLanguage = localStorage.getItem('em-home-language') || 'es'
+const imagePaths = [`${assetBase}Imagenes%20de%20casas/imagen1.png.jpg`, `${assetBase}Imagenes%20de%20casas/imagen2.png.jpg`, `${assetBase}Imagenes%20de%20casas/imagen3.png.jpg`]
+
+function render(language = currentLanguage) {
+  currentLanguage = languages.includes(language) ? language : 'es'
+  const t = translations[currentLanguage]
+  document.documentElement.lang = currentLanguage === 'val' ? 'ca-valencia' : currentLanguage
+  document.querySelector('#app').innerHTML = `
   <div class="page-shell">
-    <header class="top-brand">
-      <div class="brand-shell">
-        <img class="brand-mark" src="${assetBase}logo-em-home.png" alt="EM Home, gestión de pisos turísticos" />
-      </div>
-      <nav class="site-nav" aria-label="Navegación principal">
-        <a href="#inicio">Inicio</a>
-        <a href="#servicios">Servicios</a>
-        <a href="#proceso">Cómo trabajamos</a>
-        <a href="#viviendas">Viviendas</a>
-        <a href="#contacto">Contacto</a>
-      </nav>
-    </header>
-
-    <main>
-      <section class="intro-section" id="inicio">
-        <div class="intro-copy">
-          <p class="eyebrow">GESTIÓN TURÍSTICA</p>
-          <h1>Tu vivienda,<br><em>bien cuidada.</em></h1>
-          <p class="intro-text">Convertimos tu apartamento en una experiencia memorable para tus huéspedes y en una inversión más rentable para ti.</p>
-          <a class="primary-cta" href="#contacto">Hablemos de tu vivienda <span aria-hidden="true">↗</span></a>
-        </div>
-        <div class="intro-visual">
-          <img src="${assetBase}imagen-diseño-web.png?v=2" alt="Salón turístico luminoso con vistas a Sevilla" />
-          <div class="intro-note">
-            <span class="note-line"></span>
-            <p>Nos ocupamos de todo<br><strong>de principio a fin.</strong></p>
-          </div>
-        </div>
-      </section>
-
-      <section class="values-strip" aria-label="La propuesta de EM Home">
-        <div class="value-item"><span class="value-mark">01</span><div><strong>A MEDIDA</strong><span>Una estrategia para tu vivienda</span></div></div>
-        <div class="value-item"><span class="value-mark">02</span><div><strong>CON CUIDADO</strong><span>Atención en cada detalle</span></div></div>
-        <div class="value-item"><span class="value-mark">03</span><div><strong>CON RESULTADOS</strong><span>Más tranquilidad para ti</span></div></div>
-      </section>
-
-      <section class="services-section" id="servicios">
-        <div class="section-heading">
-          <p class="eyebrow">LO QUE HACEMOS</p>
-          <h2>Una gestión completa,<br><em>sin complicaciones.</em></h2>
-        </div>
-        <div class="feature-row">
-          <article class="feature-item">
-            <span class="service-number">01</span>
-            <h3>GESTIÓN INTEGRAL</h3>
-            <p>Me encargo de todo, de principio a fin.</p>
-          </article>
-
-          <article class="feature-item">
-            <span class="service-number">02</span>
-            <h3>PUBLICACIÓN EN PLATAFORMAS</h3>
-            <p>Más visibilidad y más oportunidades de reserva.</p>
-          </article>
-
-          <article class="feature-item">
-            <span class="service-number">03</span>
-            <h3>ATENCIÓN A HUÉSPEDES</h3>
-            <p>Experiencia cuidada y personalizada.</p>
-          </article>
-
-          <article class="feature-item">
-            <span class="service-number">04</span>
-            <h3>LIMPIEZA Y MANTENIMIENTO</h3>
-            <p>Coordinación profesional y eficiente.</p>
-          </article>
-
-          <article class="feature-item">
-            <span class="service-number">05</span>
-            <h3>OPTIMIZACIÓN DE PRECIOS Y OCUPACIÓN</h3>
-            <p>Para lograr la máxima rentabilidad.</p>
-          </article>
-
-          <article class="feature-item">
-            <span class="service-number">06</span>
-            <h3>HOME STAGING TURÍSTICO</h3>
-            <p>Una presentación que enamora y destaca.</p>
-          </article>
-        </div>
-
-        <div class="results-row">
-          <article class="result-item">
-            <span class="result-icon">↗</span>
-            <div><h3>ESTUDIO DE RENTABILIDAD <em>GRATUITO</em></h3><p>Descubre el potencial de tu vivienda.</p></div>
-          </article>
-          <article class="result-item">
-            <span class="result-icon">♡</span>
-            <div><h3>GESTIÓN PERSONALIZADA <em>Y ATENCIÓN CUIDADA</em></h3><p>Enfocados en resultados y tranquilidad.</p></div>
-          </article>
-        </div>
-
-        <div class="benefits-row" aria-label="Beneficios de la gestión EM Home">
-          <div class="benefit-item"><span class="benefit-icon">⌂</span><span>Gestión 100%<br>integral</span></div>
-          <div class="benefit-item"><span class="benefit-icon">▣</span><span>Check-in /<br>Check-out</span></div>
-          <div class="benefit-item"><span class="benefit-icon">♧</span><span>Limpieza<br>profesional</span></div>
-          <div class="benefit-item"><span class="benefit-icon">□</span><span>Calendario y<br>reservas optimizadas</span></div>
-          <div class="benefit-item"><span class="benefit-icon">⌁</span><span>Más ingresos,<br>menos preocupaciones</span></div>
-        </div>
-      </section>
-
-      <section class="process-section" id="proceso">
-        <div class="section-heading process-heading">
-          <p class="eyebrow">ASÍ EMPEZAMOS</p>
-          <h2>De tu vivienda a<br><em>sus primeras reservas.</em></h2>
-        </div>
-        <div class="process-row">
-          <article class="process-item">
-            <span class="process-number">01</span>
-            <h3>CONOCEMOS TU VIVIENDA</h3>
-            <p>Hablamos de tus objetivos, estudiamos el potencial del alojamiento y planteamos una estrategia a medida.</p>
-          </article>
-          <article class="process-item">
-            <span class="process-number">02</span>
-            <h3>LA PREPARAMOS PARA DESTACAR</h3>
-            <p>Organizamos la presentación, el anuncio, los precios y todo lo necesario para salir al mercado.</p>
-          </article>
-          <article class="process-item">
-            <span class="process-number">03</span>
-            <h3>GESTIONAMOS CADA ESTANCIA</h3>
-            <p>Reservas, huéspedes, entradas, salidas y proveedores quedan coordinados por nuestro equipo.</p>
-          </article>
-        </div>
-      </section>
-
-      <section class="homes-section" id="viviendas">
-        <div class="section-heading homes-heading">
-          <p class="eyebrow">ESPACIOS QUE CUIDAMOS</p>
-          <h2>Viviendas preparadas<br><em>para ser disfrutadas.</em></h2>
-        </div>
-        <div class="homes-grid">
-          <article class="home-card home-card-featured">
-            <img src="${assetBase}Imagenes%20de%20casas/imagen1.png.jpg" alt="Comedor luminoso de una vivienda turística EM Home" loading="lazy" />
-            <div class="home-card-copy"><span>01 · INTERIOR</span><h3>Espacios con alma</h3><p>Una presentación cuidada desde el primer vistazo.</p></div>
-          </article>
-          <article class="home-card">
-            <img src="${assetBase}Imagenes%20de%20casas/imagen2.png.jpg" alt="Baño cuidado y luminoso de una vivienda turística" loading="lazy" />
-            <div class="home-card-copy"><span>02 · DETALLES</span><h3>Cada detalle cuenta</h3><p>Orden, confort y una experiencia coherente.</p></div>
-          </article>
-          <article class="home-card">
-            <img src="${assetBase}Imagenes%20de%20casas/imagen3.png.jpg" alt="Salón luminoso preparado para huéspedes" loading="lazy" />
-            <div class="home-card-copy"><span>03 · EXTERIOR</span><h3>Momentos para recordar</h3><p>También cuidamos los espacios que hacen especial cada estancia.</p></div>
-          </article>
-        </div>
-      </section>
+    <header class="top-brand"><div class="brand-shell"><img class="brand-mark" src="${assetBase}logo-em-home.png" alt="EM Home" /></div><nav class="site-nav" aria-label="Navegación principal">${t.nav.map((item, i) => `<a href="#${['inicio', 'servicios', 'proceso', 'viviendas', 'contacto'][i]}">${item}</a>`).join('')}</nav><label class="language-picker"><span class="sr-only">Idioma</span><select id="language-select" aria-label="Seleccionar idioma">${languages.map((code) => `<option value="${code}" ${code === currentLanguage ? 'selected' : ''}>${languageNames[code]}</option>`).join('')}</select></label></header>
++    <main>
+      <section class="intro-section" id="inicio"><div class="intro-copy"><p class="eyebrow">${t.eyebrow}</p><h1>${t.hero}</h1><p class="intro-text">${t.intro}</p><a class="primary-cta" href="#contacto">${t.cta} <span aria-hidden="true">↗</span></a></div><div class="intro-visual"><img src="${assetBase}imagen-diseño-web.png?v=2" alt="Salón turístico luminoso" /><div class="intro-note"><span class="note-line"></span><p>${t.note}</p></div></div></section>
+      <section class="values-strip" aria-label="${t.eyebrow}">${t.values.map((item, i) => `<div class="value-item"><span class="value-mark">0${i + 1}</span><div><strong>${item[0]}</strong><span>${item[1]}</span></div></div>`).join('')}</section>
+      <section class="services-section" id="servicios"><div class="section-heading"><p class="eyebrow">${t.servicesEyebrow}</p><h2>${t.servicesTitle}</h2></div><div class="feature-row">${t.services.map((item, i) => `<article class="feature-item"><span class="service-number">0${i + 1}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join('')}</div><div class="results-row">${t.results.map((item, i) => `<article class="result-item"><span class="result-icon">${i ? '♡' : '↗'}</span><div><h3>${item[0]} <em>${item[1]}</em></h3><p>${item[2]}</p></div></article>`).join('')}</div><div class="benefits-row" aria-label="${t.servicesEyebrow}">${t.benefits.map((item, i) => `<div class="benefit-item"><span class="benefit-icon">${['⌂', '▣', '♧', '□', '⌁'][i]}</span><span>${item[0]}<br>${item[1]}</span></div>`).join('')}</div></section>
+      <section class="process-section" id="proceso"><div class="section-heading process-heading"><p class="eyebrow">${t.processEyebrow}</p><h2>${t.processTitle}</h2></div><div class="process-row">${t.process.map((item, i) => `<article class="process-item"><span class="process-number">0${i + 1}</span><h3>${item[0]}</h3><p>${item[1]}</p></article>`).join('')}</div></section>
+      <section class="homes-section" id="viviendas"><div class="section-heading homes-heading"><p class="eyebrow">${t.homesEyebrow}</p><h2>${t.homesTitle}</h2></div><div class="homes-grid">${t.homes.map((item, i) => `<article class="home-card ${i === 0 ? 'home-card-featured' : ''}"><img src="${imagePaths[i]}" alt="${item[1]}" loading="lazy" /><div class="home-card-copy"><span>0${i + 1} · ${item[0]}</span><h3>${item[1]}</h3><p>${item[2]}</p></div></article>`).join('')}</div></section>
     </main>
+    <footer class="contact-strip" id="contacto"><div class="contact-intro"><p class="eyebrow">EM HOME</p><h2>${t.contactTitle}</h2></div><div class="contact-details"><a href="mailto:contacto.emhomemanagement@gmail.com">contacto.emhomemanagement@gmail.com</a><a href="tel:+34602428443">+34 602 428 443</a><span>www.emgestionturistica.es</span><div class="contact-actions"><a class="whatsapp-button" href="https://wa.me/34602428443" target="_blank" rel="noreferrer">${t.whatsapp} <span aria-hidden="true">↗</span></a></div></div></footer><div class="footer-signature">${t.signature.map((item) => `<span>${item}</span>`).join('')}</div></div>`
+  document.querySelector('#language-select').addEventListener('change', (event) => { localStorage.setItem('em-home-language', event.target.value); render(event.target.value) })
+}
 
-    <footer class="contact-strip" id="contacto">
-      <div class="contact-intro">
-        <p class="eyebrow">EM HOME</p>
-        <h2>Hablemos de lo que<br><em>puede llegar a ser.</em></h2>
-      </div>
-      <div class="contact-details">
-        <a href="mailto:contacto.emhomemanagement@gmail.com">contacto.emhomemanagement@gmail.com</a>
-        <a href="tel:+34602428443">+34 602 428 443</a>
-        <span>www.emgestionturistica.es</span>
-        <div class="contact-actions">
-          <a class="whatsapp-button" href="https://wa.me/34602428443" target="_blank" rel="noreferrer">Escribir por WhatsApp <span aria-hidden="true">↗</span></a>
-        </div>
-      </div>
-    </footer>
-
-    <div class="footer-signature">
-      <span>HOGARES</span><span>EXPERIENCIAS</span><span>CONFIANZA</span>
-    </div>
-  </div>
-`;
+render()
