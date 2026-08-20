@@ -41,6 +41,7 @@ a { color: inherit; }
 
 .top-brand, main, .contact-strip, .footer-signature { position: relative; z-index: 1; }
 .top-brand {
+  z-index: 20;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -63,7 +64,7 @@ a { color: inherit; }
   transition: color 180ms ease;
 }
 .site-nav a:hover { color: var(--gold); }
-.language-picker { position: relative; flex: 0 0 auto; }
+.language-picker { position: relative; z-index: 30; flex: 0 0 auto; }
 .language-toggle { display: inline-flex; min-height: 44px; align-items: center; gap: 8px; padding: 0 12px; border: 1px solid var(--line); color: var(--ink); background: transparent; font: inherit; font-size: 0.7rem; letter-spacing: 0.04em; cursor: pointer; }
 .language-toggle:hover { background: rgba(185, 148, 89, 0.08); }
 .language-chevron { margin-left: 2px; color: var(--gold); font-size: 0.9rem; }
